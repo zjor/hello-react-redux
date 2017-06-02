@@ -2,5 +2,6 @@
 
 ## TODO ##
 
-- create counter with buttons
-- bind counter model to redux store
+- implement TODO application
+- configure webpack with babel as a plugin
+- deploy to free static hosting
