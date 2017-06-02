@@ -4,56 +4,55 @@ import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 import { createStore } from 'redux';
 
-const Button = (props) => {
+const Button = ({ caption, onClick}) => {
 	return (
-		<button onClick={props.onClick}>{props.caption}</button>
+		<button onClick={onClick}>{caption}</button>
 		);
 };
 
-const Label = (props) => (<span>{props.counter}</span>)
+const Label = ({ counter }) => (<span style={{color: 'green'}}>{counter}</span>);
 
-class App extends React.Component {
+const App = ({ counter, onIncrement, onDecrement }) => (
+	<div>
+		<Button caption="+" onClick={onIncrement} />
+		<Label counter={counter}/>
+		<Button caption="-" onClick={onDecrement} />	
+	</div>
+);
 
-	constructor(props) {
-		super(props);
-		this.state = {counter: 0};	
-	}
-
-	render() {
-
-		const increment = () => {
-			this.setState({counter: this.state.counter + 1});
-		};
-
-		const decrement = () => {
-			this.setState({counter: this.state.counter - 1});
-		};
-
-		return (
-			<div>
-				<h1>Hello world</h1>
-				<Button caption="+" onClick={increment} />
-				<Label counter={this.state.counter} />
-				<Button caption="-" onClick={decrement} />
-			</div>
-			);
-	}
-};
-
-let store = createStore((state = 0, action) => {
+let store = createStore((state = {counter: 0}, action) => {
 	switch (action.type) {
 		case 'inc':
-			return state + 1;
+			return {counter: state.counter + 1};
 		case 'dec':
-			return state - 1;
+			return {counter: state.counter - 1};
 		default:
 			return state;
 	}
 });
 
+const mapStateToProps = (state) => {
+	return {
+		counter: state.counter
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onIncrement: () => {
+			dispatch({type: 'inc'})
+		},
+		onDecrement: () => {
+			dispatch({type: 'dec'})
+		}
+	};
+};
+
+const VisibleApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
 render(
 	<Provider store={store}>
-		<App />
+		<VisibleApp />
 	</Provider>,
 	document.getElementById('root')
 );
