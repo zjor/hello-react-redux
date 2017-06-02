@@ -1,5 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
+import { createStore } from 'redux';
 
 const Button = (props) => {
 	return (
@@ -37,7 +40,20 @@ class App extends React.Component {
 	}
 };
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+let store = createStore((state = 0, action) => {
+	switch (action.type) {
+		case 'inc':
+			return state + 1;
+		case 'dec':
+			return state - 1;
+		default:
+			return state;
+	}
+});
+
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
 );
