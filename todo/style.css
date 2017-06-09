@@ -1,0 +1,21 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.content {
+	width: 800px;
+	margin: 0 auto;
+	background: lightgreen;
+}
+
+
+@media only screen and (max-width: 960px) {
+
+	.content {
+		width: 100%;
+		padding: 16px;
+		background: lightblue;
+	}
+
+}
