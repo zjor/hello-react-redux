@@ -19,13 +19,14 @@ const TaskList = ({tasks}) => {
 
 class AddTask extends React.Component {
 
-    constructor() {
-
+    constructor(props) {
+        super(props);
+        this.setState({typed: ''});
     }
 
     render() {
 
-        const handler = (event) => console.log(event.target.value);
+        const handler = (event) => this.setState({typed: event.target.value});
 
         return (
             <div>
@@ -34,6 +35,7 @@ class AddTask extends React.Component {
             </div>
         );
     }
+
 }
 
 const tasks = ["One", "Two", "Three"];
