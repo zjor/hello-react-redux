@@ -1,12 +1,46 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-const App = ({ children }) => ( <h1>{children}</h1> );
+// import { TaskList } from './components/TaskList';
 
-const TodoInput = () => {
-	return (
-		<input type="text" placeholder="Add item here"/>
-	);
+const App = ({children}) => ( <div>{children}</div> );
+
+const Task = ({name}) => <li>{name}</li>;
+
+const TaskList = ({tasks}) => {
+    const children = tasks.map(task => <Task key={task} name={task}/>);
+
+    return (
+        <ul>
+            {children}
+        </ul>
+    );
 };
 
-render(<App><TodoInput/></App>, document.getElementById('root'));
+class AddTask extends React.Component {
+
+    constructor() {
+
+    }
+
+    render() {
+
+        const handler = (event) => console.log(event.target.value);
+
+        return (
+            <div>
+                <input type="text" placeholder="Enter task here" onChange={handler.bind(this)}/>
+                <button>Add</button>
+            </div>
+        );
+    }
+}
+
+const tasks = ["One", "Two", "Three"];
+
+render(
+    <App>
+        <AddTask/>
+        <TaskList tasks={tasks}/>
+    </App>,
+    document.getElementById('root'));

@@ -3,3 +3,6 @@ bundle.js
 
 lib/
 node_modules/
+
+.idea
+*.iml
