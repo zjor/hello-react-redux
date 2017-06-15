@@ -3,11 +3,39 @@ import {render} from 'react-dom';
 
 // import { TaskList } from './components/TaskList';
 
-const App = ({children}) => ( <div>{children}</div> );
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillMount() {
+        //TODO: populate state from initial list from props
+        this.setState({tasks: []});
+    }
+
+    render() {
+
+        const onValue = (value) => {
+            console.log('Adding ', value);
+            this.setState({tasks: this.state.tasks.concat(value)});
+        }
+
+        return (
+            <div>
+                <AddTask onValue={onValue}/>
+                <TaskList tasks={this.state.tasks}/>
+            </div>
+        );
+    }
+
+}
 
 const Task = ({name}) => <li>{name}</li>;
 
 const TaskList = ({tasks}) => {
+
+    console.log(tasks);
     const children = tasks.map(task => <Task key={task} name={task}/>);
 
     return (
@@ -58,12 +86,4 @@ class AddTask extends React.Component {
 
 }
 
-const tasks = ["One", "Two", "Three"];
-const onValue = (value) => console.log(value);
-
-render(
-    <App>
-        <AddTask onValue={onValue}/>
-        <TaskList tasks={tasks}/>
-    </App>,
-    document.getElementById('root'));
+render(<App/>, document.getElementById('root'));
