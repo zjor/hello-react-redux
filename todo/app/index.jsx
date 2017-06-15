@@ -10,14 +10,12 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        //TODO: populate state from initial list from props
-        this.setState({tasks: []});
+        this.setState({tasks: this.props.tasks});
     }
 
     render() {
 
         const onValue = (value) => {
-            console.log('Adding ', value);
             this.setState({tasks: this.state.tasks.concat(value)});
         }
 
@@ -86,4 +84,4 @@ class AddTask extends React.Component {
 
 }
 
-render(<App/>, document.getElementById('root'));
+render(<App tasks={["Go to work", "Buy milk", "Jogging"]}/>, document.getElementById('root'));
