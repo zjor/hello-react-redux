@@ -1,3 +1,5 @@
-const Task = ({ name }) => <li>{name}</li>;
+import React from 'react';
+
+const Task = ({name}) => <li>{name}</li>;
 
 export { Task };

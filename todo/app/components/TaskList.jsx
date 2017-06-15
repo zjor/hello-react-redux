@@ -1,7 +1,17 @@
+import React from 'react';
+
 import { Task } from './Task';
 
 const TaskList = ({tasks}) => {
-    <ul>{tasks.map(task => <Task name={task}/>)}</ul>
+
+    console.log(tasks);
+    const children = tasks.map(task => <Task key={task} name={task}/>);
+
+    return (
+        <ul>
+            {children}
+        </ul>
+    );
 };
 
 export { TaskList };
