@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Button } from 'react-toolbox/lib/button';
+
 class AddTask extends Component {
 
     constructor(props) {
@@ -34,7 +36,7 @@ class AddTask extends Component {
                        onChange={this.keyPressed.bind(this)}
                        onKeyDown={this.keyDown.bind(this)}
                        ref={(input => { this.textInput = input; })}/>
-                <button onClick={this.submitValue.bind(this)}>Add</button>
+                <Button icon="add" label="Add" flat primary onClick={this.submitValue.bind(this)} />
             </div>
         );
     }
