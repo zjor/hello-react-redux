@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {AddTask} from 'components/AddTask';
 import {Filter} from 'components/Filter';
 import {TaskList} from 'components/TaskList';
+import {Counter} from 'components/Counter';
 
 class App extends Component {
 
@@ -85,6 +86,7 @@ class App extends Component {
                 <AddTask onValue={onValue}/>
                 <Filter filterName={this.state.filter} onChange={onFilter}/>
                 <TaskList tasks={this.state.visibleTasks} onToggleDone={onToggleDone}/>
+                <Counter tasks={this.state.tasks}/>
             </div>
         );
     }
