@@ -2,10 +2,14 @@ import React from 'react';
 
 import { Task } from './Task';
 
-const TaskList = ({tasks}) => {
+const TaskList = ({tasks, onToggleDone}) => {
 
-    console.log(tasks);
-    const children = tasks.map(task => <Task key={task} name={task}/>);
+    const children = tasks.map(task =>
+        <Task
+            key={task.id}
+            task={task}
+            onClick={onToggleDone.bind(this, task)}
+        />);
 
     return (
         <ul>
