@@ -4,19 +4,22 @@ import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 
 import { App } from 'components/App';
-import { todoReducer } from 'model/TodoModel';
+import todoApp from 'reducers/index';
 
-const store = createStore(todoReducer);
+import { addTodo, toggleTodo } from 'actions/index';
+
+const store = createStore(todoApp);
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state
+        tasks: state.todos
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddTask: (task) => dispatch({type: 'ADD_TODO', payload: task})
+        onAddTask: (text) => dispatch(addTodo(text)),
+        onToggleDone: (id) => dispatch(toggleTodo(id))
     }
 };
 

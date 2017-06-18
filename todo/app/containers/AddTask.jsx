@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-// import { Button } from 'react-toolbox/lib/button';
+import { addTodo } from 'actions/index';
 
-class AddTask extends Component {
+class AddTaskComponent extends Component {
 
     constructor(props) {
         super(props);
@@ -25,7 +26,7 @@ class AddTask extends Component {
     }
 
     submitValue() {
-        this.props.onValue(this.state.typed);
+        this.props.dispatch(addTodo(this.state.typed));
         this.textInput.value = '';
     }
 
@@ -37,11 +38,12 @@ class AddTask extends Component {
                        onKeyDown={this.keyDown.bind(this)}
                        ref={(input => { this.textInput = input; })}/>
                 <button onClick={this.submitValue.bind(this)} >Add</button>
-                {/*<Button icon="add" label="Add" flat primary onClick={this.submitValue.bind(this)} />*/}
             </div>
         );
     }
 
 }
+
+const AddTask = connect() (AddTaskComponent);
 
 export { AddTask };

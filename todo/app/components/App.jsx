@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import {AddTask} from 'components/AddTask';
+import {AddTask} from 'containers/AddTask';
 import {Filter} from 'components/Filter';
 import {TaskList} from 'components/TaskList';
-import {Counter} from 'components/Counter';
+import {Counter} from 'containers/Counter';
 
 class App extends Component {
 
@@ -43,38 +43,8 @@ class App extends Component {
             }
         };
 
-        const onValue = (value) => {
-            this.props.onAddTask({
-                id: this.getNextId(),
-                name: value
-            });
-            // const tasks = this.state.tasks.concat({
-            //     id: this.getNextId(),
-            //     name: value,
-            //     done: false
-            // });
-            //
-            // this.setState({
-            //     tasks: tasks,
-            //     visibleTasks: filterTasks(tasks, this.state.filter),
-            //     filter: this.state.filter
-            // });
-        };
-
         const onToggleDone = (task) => {
-            let tasks = [];
-            this.state.tasks.forEach(t => {
-                tasks.push({
-                    id: t.id,
-                    name: t.name,
-                    done: t.id === task.id ? !t.done : t.done
-                });
-            });
-            this.setState({
-                tasks: tasks,
-                visibleTasks: filterTasks(tasks, this.state.filter),
-                filter: this.state.filter
-            });
+            this.props.onToggleDone(task.id);
         };
 
         const onFilter = (name) => {
@@ -87,10 +57,10 @@ class App extends Component {
 
         return (
             <div>
-                <AddTask onValue={onValue}/>
+                <AddTask/>
                 {/*<Filter filterName={this.state.filter} onChange={onFilter}/>*/}
                 <TaskList tasks={this.props.tasks} onToggleDone={onToggleDone}/>
-                <Counter tasks={this.props.tasks}/>
+                <Counter/>
             </div>
         );
     }

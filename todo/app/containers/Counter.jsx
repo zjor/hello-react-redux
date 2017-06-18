@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Counter = ({tasks}) => {
+import {connect} from 'react-redux';
+
+const CounterComponent = ({tasks}) => {
 
     const all = tasks.length;
     const done = tasks.filter(task => task.done).length;
@@ -16,4 +18,6 @@ const Counter = ({tasks}) => {
 
 };
 
-export { Counter };
+const Counter = connect(state => ({tasks: state.todos})) (CounterComponent);
+
+export {Counter};
