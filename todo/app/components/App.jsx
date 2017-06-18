@@ -12,23 +12,23 @@ class App extends Component {
     }
 
     componentWillMount() {
-        let tasks = [];
-        this.props.tasks.forEach((item, index) => {
-            tasks.push({
-                id: index,
-                name: item,
-                done: false
-            });
-        });
-        this.setState({
-            tasks: tasks,
-            visibleTasks: tasks,
-            filter: this.props.filter
-        });
+        // let tasks = [];
+        // this.props.tasks.forEach((item, index) => {
+        //     tasks.push({
+        //         id: index,
+        //         name: item,
+        //         done: false
+        //     });
+        // });
+        // this.setState({
+        //     tasks: tasks,
+        //     visibleTasks: tasks,
+        //     filter: this.props.filter
+        // });
     }
 
     getNextId() {
-        return this.state.tasks.map(t => t.id).reduce((max, id) => Math.max(max, id)) + 1;
+        return this.props.tasks.map(t => t.id).reduce((max, id) => Math.max(max, id), 0) + 1;
     }
 
     render() {
@@ -44,17 +44,21 @@ class App extends Component {
         };
 
         const onValue = (value) => {
-            const tasks = this.state.tasks.concat({
+            this.props.onAddTask({
                 id: this.getNextId(),
-                name: value,
-                done: false
+                name: value
             });
-
-            this.setState({
-                tasks: tasks,
-                visibleTasks: filterTasks(tasks, this.state.filter),
-                filter: this.state.filter
-            });
+            // const tasks = this.state.tasks.concat({
+            //     id: this.getNextId(),
+            //     name: value,
+            //     done: false
+            // });
+            //
+            // this.setState({
+            //     tasks: tasks,
+            //     visibleTasks: filterTasks(tasks, this.state.filter),
+            //     filter: this.state.filter
+            // });
         };
 
         const onToggleDone = (task) => {
@@ -84,9 +88,9 @@ class App extends Component {
         return (
             <div>
                 <AddTask onValue={onValue}/>
-                <Filter filterName={this.state.filter} onChange={onFilter}/>
-                <TaskList tasks={this.state.visibleTasks} onToggleDone={onToggleDone}/>
-                <Counter tasks={this.state.tasks}/>
+                {/*<Filter filterName={this.state.filter} onChange={onFilter}/>*/}
+                <TaskList tasks={this.props.tasks} onToggleDone={onToggleDone}/>
+                <Counter tasks={this.props.tasks}/>
             </div>
         );
     }
