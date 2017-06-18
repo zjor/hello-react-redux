@@ -12,7 +12,8 @@ const store = createStore(todoApp);
 
 const mapStateToProps = (state) => {
     return {
-        tasks: state.todos
+        tasks: state.todos,
+        filter: state.filter
     };
 };
 

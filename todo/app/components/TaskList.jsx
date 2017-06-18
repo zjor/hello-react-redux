@@ -7,8 +7,9 @@ const TaskList = ({tasks, onToggleDone}) => {
     const children = tasks.map(task =>
         <Task
             key={task.id}
-            task={task}
-            onClick={onToggleDone.bind(this, task)}
+            text={task.name}
+            done={task.done}
+            onClick={() => onToggleDone(task.id)}
         />);
 
     return (

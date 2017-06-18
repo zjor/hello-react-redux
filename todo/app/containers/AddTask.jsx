@@ -41,7 +41,6 @@ class AddTaskComponent extends Component {
             </div>
         );
     }
-
 }
 
 const AddTask = connect() (AddTaskComponent);

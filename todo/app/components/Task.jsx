@@ -1,15 +1,14 @@
 import React from 'react';
 
-const Task = ({task, onClick}) => {
+const Task = ({text, done, onClick}) => {
 
-    const style = {};
-    if (task.done) {
-        style.textDecoration = "line-through";
-    }
+    const style = {
+        textDecoration: done ? 'line-through' : 'none'
+    };
 
     return (
-        <li onClick={onClick.bind(this, task)}>
-            <span style={style}>{task.name}</span>
+        <li onClick={onClick}>
+            <span style={style}>{text}</span>
         </li>
     );
 };
