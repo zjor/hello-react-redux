@@ -26,13 +26,21 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "caniuse-db": "^1.0.30000692",
     "classnames": "^2.2.5",
+    "css-loader": "^0.28.4",
+    "postcss-cssnext": "^2.11.0",
+    "postcss-each": "^0.10.0",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "postcss-mixins": "^6.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-toolbox": "^2.0.0-beta.12",
     "react-transition-group": "^1.2.0",
-    "redux": "^3.7.0"
+    "redux": "^3.7.0",
+    "style-loader": "^0.18.2"
   }
 }

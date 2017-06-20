@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { addTodo } from 'actions/index';
 
+import {Button} from 'react-toolbox/lib/button';
+
 class AddTaskComponent extends Component {
 
     constructor(props) {
@@ -38,6 +40,7 @@ class AddTaskComponent extends Component {
                        onKeyDown={this.keyDown.bind(this)}
                        ref={(input => { this.textInput = input; })}/>
                 <button onClick={this.submitValue.bind(this)} >Add</button>
+                <Button label="Click me"/>
             </div>
         );
     }

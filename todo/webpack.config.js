@@ -14,7 +14,23 @@ module.exports = {
                 test: /\.jsx?/,
                 include: APP_DIR,
                 loader: 'babel-loader'
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            sourceMap: true,
+                            importLoaders: 1,
+                            localIdentName: "[name]--[local]--[hash:base64:8]"
+                        }
+                    },
+                    "postcss-loader" // has separate config, see postcss.config.js nearby
+                ]
+            },
         ]
     },
     resolve: {
@@ -22,7 +38,7 @@ module.exports = {
             path.resolve(__dirname, 'app'),
             "node_modules"
         ],
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.css']
     }
 
 };
