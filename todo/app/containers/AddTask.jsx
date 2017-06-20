@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+
+import { Button } from 'react-toolbox/lib/button';
+import { Input } from 'react-toolbox/lib/input';
+
 import { connect } from 'react-redux';
 
 import { addTodo } from 'actions/index';
 
-import {Button} from 'react-toolbox/lib/button';
+
 
 class AddTaskComponent extends Component {
 
@@ -35,12 +39,12 @@ class AddTaskComponent extends Component {
     render() {
         return (
             <div>
-                <input type="text" placeholder="Enter task here"
+                <Input type="text"
+                       label="Enter task here"
                        onChange={this.keyPressed.bind(this)}
-                       onKeyDown={this.keyDown.bind(this)}
+                       onKeyPress={this.keyDown.bind(this)}
                        ref={(input => { this.textInput = input; })}/>
-                <button onClick={this.submitValue.bind(this)} >Add</button>
-                <Button label="Click me"/>
+                <Button label="Add" onClick={() => this.submitValue()}/>
             </div>
         );
     }

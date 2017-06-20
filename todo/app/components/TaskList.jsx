@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { List } from 'react-toolbox/lib/list';
 import { Task } from './Task';
 
 const TaskList = ({tasks, onToggleDone}) => {
@@ -13,9 +13,9 @@ const TaskList = ({tasks, onToggleDone}) => {
         />);
 
     return (
-        <ul>
+        <List>
             {children}
-        </ul>
+        </List>
     );
 };
 

@@ -1,15 +1,13 @@
 import React from 'react';
+import { ListCheckbox } from 'react-toolbox/lib/list';
 
 const Task = ({text, done, onClick}) => {
 
-    const style = {
-        textDecoration: done ? 'line-through' : 'none'
-    };
-
     return (
-        <li onClick={onClick}>
-            <span style={style}>{text}</span>
-        </li>
+        <ListCheckbox
+            checked={done}
+            onChange={onClick}
+            caption={text}/>
     );
 };
 
