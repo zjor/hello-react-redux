@@ -1,0 +1,7 @@
+.taskActive {
+	text-decoration: none;
+}
+
+.taskDone {
+	text-decoration: line-through;
+}

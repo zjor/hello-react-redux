@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import { addTodo } from 'actions/index';
 
+import styles from './AddTask.css';
 
 
 class AddTaskComponent extends Component {
@@ -19,13 +20,13 @@ class AddTaskComponent extends Component {
         this.setState({typed: ''});
     }
 
-    keyPressed(event) {
+    onChange(value) {
         this.setState({
-            typed: event.target.value
+            typed: value
         });
     }
 
-    keyDown(event) {
+    onKeyPress(event) {
         if (event.key == 'Enter') {
             this.submitValue();
         }
@@ -33,18 +34,22 @@ class AddTaskComponent extends Component {
 
     submitValue() {
         this.props.dispatch(addTodo(this.state.typed));
-        this.textInput.value = '';
+        this.setState({typed: ''});
     }
 
     render() {
         return (
-            <div>
+            <div className={styles.container}>
                 <Input type="text"
                        label="Enter task here"
-                       onChange={this.keyPressed.bind(this)}
-                       onKeyPress={this.keyDown.bind(this)}
-                       ref={(input => { this.textInput = input; })}/>
-                <Button label="Add" onClick={() => this.submitValue()}/>
+                       onChange={this.onChange.bind(this)}
+                       onKeyPress={this.onKeyPress.bind(this)}
+                       value={this.state.typed}
+                       className={styles.input}/>
+                <Button raised primary
+                    label="Add" 
+                    onClick={this.submitValue.bind(this)}
+                    className={styles.button}/>
             </div>
         );
     }
